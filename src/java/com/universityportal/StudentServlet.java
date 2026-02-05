@@ -1,9 +1,17 @@
 package com.universityportal;
 
-import java.io.*;
-import javax.servlet.*;
+import com.university.dao.StudentDAO;
+import com.university.model.Course;
+import com.university.model.Student;
+
+import java.io.IOException;
+import java.util.List;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/student")
 public class StudentServlet extends HttpServlet {
@@ -11,34 +19,60 @@ public class StudentServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
+        String idParam = request.getParameter("id");
+        if (idParam == null || idParam.isBlank()) {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/JSP/student_lookup.jsp");
+            dispatcher.forward(request, response);
+            return;
+        }
 
-        out.println("<html><body style='font-family:Arial;'>");
-        out.println("<h2>Student Schedule</h2>");
-        out.println("<form action='student' method='post'>");
-        out.println("Enter Student ID: <input type='text' name='studentId'/><br><br>");
-        out.println("<input type='submit' value='View Schedule'/>");
-        out.println("</form>");
-        out.println("<a href='index.jsp'>Back to Home</a>");
-        out.println("</body></html>");
+        Integer studentId = parseStudentId(idParam);
+        if (studentId == null) {
+            request.setAttribute("error", "Please enter a valid numeric student ID.");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/JSP/student_lookup.jsp");
+            dispatcher.forward(request, response);
+            return;
+        }
+
+        StudentDAO studentDAO = new StudentDAO();
+        Student student = studentDAO.getStudentById(studentId);
+        List<Course> courses = studentDAO.getCoursesForStudent(studentId);
+
+        if (student == null) {
+            request.setAttribute("error", "No student found for ID " + studentId + ".");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/JSP/student_lookup.jsp");
+            dispatcher.forward(request, response);
+            return;
+        }
+
+        request.setAttribute("student", student);
+        request.setAttribute("courses", courses);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/JSP/student.jsp");
+        dispatcher.forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String studentId = request.getParameter("studentId");
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
+        String idParam = request.getParameter("id");
+        if (idParam == null || idParam.isBlank()) {
+            idParam = request.getParameter("studentId");
+        }
+        if (idParam != null) {
+            response.sendRedirect(request.getContextPath() + "/student?id=" + idParam);
+            return;
+        }
 
-        out.println("<html><body style='font-family:Arial;'>");
-        out.println("<h2>Schedule for Student ID: " + studentId + "</h2>");
-        out.println("<ul>");
-        out.println("<li>CS101 - Introduction to Programming (Mon 9am)</li>");
-        out.println("<li>CS102 - Database Systems (Wed 11am)</li>");
-        out.println("</ul>");
-        out.println("<a href='index.jsp'>Back to Home</a>");
-        out.println("</body></html>");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/JSP/student_lookup.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private Integer parseStudentId(String value) {
+        try {
+            return Integer.valueOf(value.trim());
+        } catch (NumberFormatException ex) {
+            return null;
+        }
     }
 }

@@ -1,27 +1,27 @@
 package com.universityportal;
 
-import java.io.*;
-import javax.servlet.*;
+import com.university.dao.CourseDAO;
+import com.university.model.Course;
+
+import java.io.IOException;
+import java.util.List;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/courses")
 public class CourseServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        CourseDAO courseDAO = new CourseDAO();
+        List<Course> courses = courseDAO.getAllCourses();
+        request.setAttribute("courses", courses);
 
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
-
-        out.println("<html><body style='font-family:Arial;'>");
-        out.println("<h2>All Courses</h2>");
-        out.println("<ul>");
-        out.println("<li>CS101 - Introduction to Programming</li>");
-        out.println("<li>CS102 - Database Systems</li>");
-        out.println("<li>CS103 - Web Development</li>");
-        out.println("</ul>");
-        out.println("<a href='index.jsp'>Back to Home</a>");
-        out.println("</body></html>");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/JSP/courses.jsp");
+        dispatcher.forward(request, response);
     }
 }
