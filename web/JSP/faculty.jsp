@@ -42,6 +42,14 @@
             <div class="alert alert-danger"><%= error %></div>
         <% } %>
 
+        <section class="card section">
+            <div class="meta-list">
+                <span class="pill">Department: Arts & Sciences</span>
+                <span>Term: Fall 2025</span>
+                <span>Last sync: 15 mins ago</span>
+            </div>
+        </section>
+
         <table class="data-table">
             <thead>
                 <tr>
@@ -61,7 +69,11 @@
                     <td><%= c.getCourseName() %></td>
                     <td><%= c.getInstructor() %></td>
                     <td><%= c.getSchedule() %></td>
-                    <td><a class="secondary-action" href="faculty?id=<%= c.getCourseId() %>">Edit</a></td>
+                    <td>
+                        <div class="table-actions">
+                            <a class="secondary-action" href="faculty?id=<%= c.getCourseId() %>">Edit</a>
+                        </div>
+                    </td>
                 </tr>
             <% } %>
             </tbody>

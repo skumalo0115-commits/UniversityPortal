@@ -33,6 +33,14 @@
             <p>Review all courses currently offered across departments and programs.</p>
         </section>
 
+        <section class="card section">
+            <div class="meta-list">
+                <span class="pill">Updated hourly</span>
+                <span>Registrar • Academic Affairs</span>
+                <span>Contact: registrar@university.edu</span>
+            </div>
+        </section>
+
         <table class="data-table">
             <thead>
                 <tr>

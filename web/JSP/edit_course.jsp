@@ -46,10 +46,12 @@
                 <div class="form-group">
                     <label for="instructor">Instructor</label>
                     <input id="instructor" type="text" name="instructor" value="<%= course.getInstructor() %>" />
+                    <span class="helper-text">Use full faculty title and last name.</span>
                 </div>
                 <div class="form-group">
                     <label for="schedule">Schedule</label>
                     <input id="schedule" type="text" name="schedule" value="<%= course.getSchedule() %>" />
+                    <span class="helper-text">Example: Mon/Wed 10:00–11:15 AM.</span>
                 </div>
                 <div class="form-actions">
                     <button class="primary-action" type="submit">Update Course</button>

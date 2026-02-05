@@ -37,6 +37,7 @@
             <div class="form-group">
                 <label for="studentId">Student ID</label>
                 <input id="studentId" type="text" name="id" placeholder="e.g. 1 or 2" />
+                <span class="helper-text">Your student ID appears on your campus ID card.</span>
             </div>
             <div class="form-actions">
                 <button class="primary-action" type="submit">View Schedule</button>

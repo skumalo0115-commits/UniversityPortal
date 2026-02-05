@@ -35,10 +35,21 @@
         </section>
 
         <% if (s != null) { %>
-            <section class="card" style="margin-bottom: 24px;">
+            <section class="card section">
                 <h3><%= s.getFirstName() + " " + s.getLastName() %></h3>
-                <p><strong>Student ID:</strong> <%= s.getStudentId() %></p>
-                <p><strong>Email:</strong> <%= s.getEmail() %></p>
+                <div class="meta-list">
+                    <span><strong>Student ID:</strong> <%= s.getStudentId() %></span>
+                    <span><strong>Email:</strong> <%= s.getEmail() %></span>
+                    <span><strong>Status:</strong> Full-time</span>
+                </div>
+            </section>
+
+            <section class="card section">
+                <div class="meta-list">
+                    <span class="pill">Term: Fall 2025</span>
+                    <span>Enrollment verified</span>
+                    <span>Adviser: Dr. M. Alvarez</span>
+                </div>
             </section>
 
             <table class="data-table">
