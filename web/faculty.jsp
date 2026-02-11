@@ -24,7 +24,7 @@
     String message = (String) request.getAttribute("message");
     if (message == null) message = "";
 %>
-<body class="theme-dark <%= loggedIn ? "logged-in" : "logged-out" %>">
+<body class="theme-dark <%= loggedIn ? "logged-in" : "logged-out" %>" data-context-path="<%= request.getContextPath() %>">
     <header class="page-header">
         <div>
             <h1>Faculty Console</h1>
