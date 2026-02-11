@@ -1,14 +1,14 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="java.util.List"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="com.university.model.Course"%>
+<%@ page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="java.util.List"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="com.university.model.Course"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Faculty Console | University Portal</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script defer src="js/app.js"></script>
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
+    <script defer src="<%= request.getContextPath() %>/js/app.js"></script>
 </head>
 <%
     String role = (String) session.getAttribute("role");
@@ -16,19 +16,13 @@
     boolean isStudent = "student".equalsIgnoreCase(role);
 
     List<Course> courses = (List<Course>) request.getAttribute("courses");
-    if (courses == null) {
-        courses = new ArrayList<Course>();
-    }
+    if (courses == null) courses = new ArrayList<Course>();
 
     List<Course> updatedCourses = (List<Course>) session.getAttribute("updatedCourses");
-    if (updatedCourses == null) {
-        updatedCourses = new ArrayList<Course>();
-    }
+    if (updatedCourses == null) updatedCourses = new ArrayList<Course>();
 
     String message = (String) request.getAttribute("message");
-    if (message == null) {
-        message = "";
-    }
+    if (message == null) message = "";
 %>
 <body class="theme-dark <%= loggedIn ? "logged-in" : "logged-out" %>">
     <header class="page-header">
@@ -37,9 +31,9 @@
             <p>Update instructors and schedules with secure validation.</p>
         </div>
         <div class="header-actions">
-            <a class="btn ghost" href="index.jsp">Dashboard</a>
+            <a class="btn ghost" href="<%= request.getContextPath() %>/index.jsp">Dashboard</a>
             <% if (loggedIn) { %>
-                <a class="btn ghost logged-in-only" href="logout">Logout</a>
+                <a class="btn ghost logged-in-only" href="<%= request.getContextPath() %>/logout">Logout</a>
             <% } %>
             <button class="toggle" id="themeToggle" type="button">Toggle Dark Mode</button>
         </div>
@@ -47,7 +41,7 @@
 
     <main class="container">
         <section class="glass-card">
-            <form class="form" id="facultyForm" action="faculty" method="post">
+            <form class="form" id="facultyForm" action="<%= request.getContextPath() %>/faculty" method="post" data-ajax="true">
                 <label for="courseId">Course</label>
                 <select id="courseId" name="courseId" class="styled-select" required <%= isStudent ? "disabled" : "" %>>
                     <option value="">Select a course</option>
@@ -104,3 +98,4 @@
     </main>
 </body>
 </html>
+
