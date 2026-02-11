@@ -53,7 +53,7 @@
     }
 %>
 
-<body class="theme-dark <%= loggedIn ? "logged-in" : "logged-out" %>">
+<body class="theme-dark <%= loggedIn ? "logged-in" : "logged-out" %>" data-context-path="<%= request.getContextPath() %>">
 
 <header class="page-header">
     <div>
@@ -62,10 +62,10 @@
     </div>
 
     <div class="header-actions">
-        <a class="btn ghost" href="index.jsp">Dashboard</a>
+          <a class="btn ghost" href="<%= request.getContextPath() %>/index.jsp">Dashboard</a>
 
         <% if (loggedIn) { %>
-            <a class="btn ghost logged-in-only" href="logout">Logout</a>
+            <a class="btn ghost logged-in-only" href="<%= request.getContextPath() %>/logout">Logout</a>
         <% } %>
 
         <button class="toggle" id="themeToggle" type="button">
@@ -79,7 +79,7 @@
 <!-- ===== SEARCH FORM ===== -->
 <section class="glass-card spaced-card">
 
-<form class="form" action="student" method="post">
+<form class="form" action="<%= request.getContextPath() %>/student" method="post">
 
 <label for="studentId">Student ID</label>
 
