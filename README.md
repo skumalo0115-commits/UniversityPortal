@@ -108,6 +108,7 @@ The codebase follows a practical layered structure:
 
 ```text
 UniversityPortal/
+├── dist/UniversityPortal.war
 ├── src/java/com/university/
 │   ├── dao/
 │   ├── model/
@@ -123,6 +124,9 @@ UniversityPortal/
 │   ├── faculty.jsp
 │   ├── courses.jsp
 │   └── error.jsp
+├── gitignore.txt
+├── build.xml
+├── Dockerfile
 └── README.md
 ```
 
