@@ -8,8 +8,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Courses | University Portal</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script defer src="js/app.js"></script>
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
+    <script defer src="<%= request.getContextPath() %>/js/app.js"></script>
 </head>
 
 <%
@@ -28,7 +28,7 @@
     }
 %>
 
-<body class="theme-dark <%= loggedIn ? "logged-in" : "logged-out" %>">
+<body class="theme-dark <%= loggedIn ? "logged-in" : "logged-out" %>" data-context-path="<%= request.getContextPath() %>">
 
 <header class="page-header">
 
@@ -39,12 +39,12 @@
 
 <div class="header-actions">
 
-<a class="btn ghost" href="index.jsp">
+<a class="btn ghost" href="<%= request.getContextPath() %>/index.jsp">
     Dashboard
 </a>
 
 <% if (loggedIn) { %>
-<a class="btn ghost logged-in-only" href="logout">
+<a class="btn ghost logged-in-only" href="<%= request.getContextPath() %>/logout">
     Logout
 </a>
 <% } %>
@@ -69,49 +69,3 @@
 
 <!-- ===== COURSE CARDS ===== -->
 <section class="card-grid" id="courseList">
-
-<%
-for (Course course : courses) {
-
-    String code =
-        course.getCourseCode() == null ? "" : course.getCourseCode();
-
-    String name =
-        course.getCourseName() == null ? "" : course.getCourseName();
-
-    String instructor =
-        course.getInstructor() == null ? "" : course.getInstructor();
-
-    String schedule =
-        course.getSchedule() == null ? "" : course.getSchedule();
-%>
-
-<article
-class="glass-card course-card"
-data-search="<%= code %> <%= name %> <%= instructor %> <%= schedule %>"
->
-
-<div class="chip"><%= code %></div>
-
-<h2><%= name %></h2>
-
-<p>
-<strong>Instructor:</strong>
-<%= instructor %>
-</p>
-
-<p>
-<strong>Schedule:</strong>
-<%= schedule %>
-</p>
-
-</article>
-
-<%
-}
-%>
-
-</section>
-</main>
-</body>
-</html>
