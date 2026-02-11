@@ -9,8 +9,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Student Schedule | University Portal</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script defer src="js/app.js"></script>
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
+    <script defer src="<%= request.getContextPath() %>/js/app.js"></script>
 </head>
 
 <%
