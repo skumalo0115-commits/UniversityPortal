@@ -5,17 +5,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBConnection {
+
     private static final String DEFAULT_URL = "jdbc:mysql://localhost:3306/university_portal?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
     private static final String DEFAULT_USER = "root";
     private static final String DEFAULT_PASSWORD = "123456";
-
-    static {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) 
-            throw new RuntimeException("MySQL JDBC driver not found. Ensure mysql-connector-j is bundled.", e);
-        }
-    }
 
     private static String firstNonBlank(String... values) {
         for (String value : values) {
