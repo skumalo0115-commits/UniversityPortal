@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "CourseServlet", urlPatterns = {"/courses"})
 public class CourseServlet extends HttpServlet {
 
     /**
