@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Something Went Wrong</title>
+
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
 </head>
-<body class="theme-dark">
+<body class="theme-dark" data-context-path="<%= request.getContextPath() %>">
     <main class="container">
         <section class="glass-card">
             <h1>Oops!</h1>
