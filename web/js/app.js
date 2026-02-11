@@ -1,3 +1,7 @@
+const contextPath = (document.body && document.body.dataset && document.body.dataset.contextPath) ? document.body.dataset.contextPath : "";
+
+
+
 const themeToggle = document.getElementById("themeToggle");
 const courseSearch = document.getElementById("courseSearch");
 const facultyForm = document.getElementById("facultyForm");
@@ -68,7 +72,7 @@ if (facultyForm && facultyForm.dataset.ajax === "true") {
 
             const contentType = response.headers.get("content-type") || "";
             if (!contentType.includes("application/json")) {
-                window.location.href = "login";
+                window.location.href = `${contextPath}/login`;
                 return;
             }
 
