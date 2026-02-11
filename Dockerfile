@@ -1,5 +1,6 @@
-# Use official Tomcat image with Java 17
-FROM tomcat:10.1.12-jdk17
+# Use Tomcat 9 (javax.servlet namespace) with Java 17.
+# The app currently uses javax.servlet APIs, which are not compatible with Tomcat 10+ (jakarta.servlet).
+FROM tomcat:9.0-jdk17-temurin tomcat:10.1.12-jdk17
 
 # Remove default Tomcat webapps
 RUN rm -rf /usr/local/tomcat/webapps/*
