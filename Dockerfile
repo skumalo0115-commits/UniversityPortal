@@ -5,7 +5,7 @@ FROM tomcat:10.1.12-jdk17
 RUN rm -rf /usr/local/tomcat/webapps/*
 
 # Copy your WAR file to Tomcat and name it ROOT.war
-COPY dist/YourApp.war /usr/local/tomcat/webapps/ROOT.war
+COPY dist\UniversityPortal.war /usr/local/tomcat/webapps/ROOT.war
 
 # Expose Tomcat default port
 EXPOSE 8080
