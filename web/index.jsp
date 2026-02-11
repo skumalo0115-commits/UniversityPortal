@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
     <script defer src="<%= request.getContextPath() %>/js/app.js"></script>
 </head>
-<body class="theme-dark">
+<body class="theme-dark" data-context-path="<%= request.getContextPath() %>">
     <header class="hero">
         <!-- Not logged in -->
         <div class="hero-content" style="display:${empty sessionScope.role ? 'grid' : 'none'};">
