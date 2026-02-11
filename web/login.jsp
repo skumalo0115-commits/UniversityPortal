@@ -4,24 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Login | University Portal</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script defer src="js/app.js"></script>
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
+    <script defer src="<%= request.getContextPath() %>/js/app.js"></script>
 </head>
-<body class="theme-dark ${empty sessionScope.role ? 'logged-out' : 'logged-in'}">
+<body class="theme-dark ${empty sessionScope.role ? 'logged-out' : 'logged-in'}" data-context-path="<%= request.getContextPath() %>">
     <header class="page-header">
         <div>
             <h1>Secure Login</h1>
             <p>Select your role to access the right dashboard.</p>
         </div>
         <div class="header-actions">
-            <a class="btn ghost" href="index.jsp">Dashboard</a>
+            <a class="btn ghost" href="<%= request.getContextPath() %>/index.jsp">Dashboard</a>
             <button class="toggle" id="themeToggle" type="button">Toggle Mode</button>
         </div>
     </header>
 
     <main class="container">
         <section class="glass-card">
-            <form class="form" action="login" method="post">
+            <form class="form" action="<%= request.getContextPath() %>/login" method="post">
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" placeholder="Enter username" required>
 
